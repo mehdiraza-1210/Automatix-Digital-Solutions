@@ -149,6 +149,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                   <option value="ai-integrations">3. A.I. Business Integrations</option>
                   <option value="social-media-management">4. Social Media Management (Meta, X & Pinterest)</option>
                   <option value="hrms-erp-custom">5. HRMS, ERP & Custom Software Development</option>
+                  <option value="pos-systems">6. Point of Sale (POS) Systems</option>
                   <option value="full-stack">Full Digital Transformation Suite</option>
                 </select>
               </div>

@@ -9,7 +9,8 @@ import {
   Check, 
   ArrowRight, 
   CheckCircle2,
-  HelpCircle
+  HelpCircle,
+  Store
 } from 'lucide-react';
 
 export default function ServicesPage({ onOpenConsultation, targetServiceId = null }) {
@@ -31,7 +32,8 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
     'Cpu': Cpu,
     'Sparkles': Sparkles,
     'Target': Target,
-    'Server': Server
+    'Server': Server,
+    'Store': Store
   };
 
   return (

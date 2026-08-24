@@ -236,6 +236,31 @@ export const servicesData = [
       "Scales seamlessly with infinite records and multi-branch support"
     ],
     deliverables: "Production-ready enterprise web application, localized database, source code handover, and staff training."
+  },
+  {
+    id: "pos-systems",
+    number: "06",
+    title: "Point of Sale (POS) Systems",
+    tagline: "High-Speed Checkout & Omnichannel Retail Infrastructure",
+    shortDescription: "Custom-built POS solutions designed for cafes, restaurants, retail stores, and multi-branch operations — featuring rapid checkout, barcode scanning, offline mode, automated inventory sync, and hardware integration.",
+    longDescription: "We build fast, reliable Point of Sale (POS) platforms engineered specifically for your retail, restaurant, or café operations. From touchscreen order terminals and table management to multi-location inventory syncing, receipt printers, and payment gateways — our custom POS systems eliminate transaction friction and give you complete software ownership with zero recurring per-terminal license fees.",
+    icon: "Store",
+    accentColor: "from-cyan-500 to-electric-600",
+    glowColor: "rgba(6, 182, 212, 0.3)",
+    includes: [
+      "Intuitive touchscreen UI & ultra-fast checkout flow",
+      "Offline transaction resilience & auto-cloud sync",
+      "Real-time omnichannel stock & multi-branch inventory tracking",
+      "Thermal printer, barcode scanner & cash drawer integration",
+      "Staff shifts, table management, split billing & commission tracking",
+      "Automated end-of-day reconciliation & visual sales analytics"
+    ],
+    benefits: [
+      "Zero monthly per-terminal software fees (own your system)",
+      "Sub-second order processing during peak rush hours",
+      "Seamless real-time synchronization with your ERP and accounting"
+    ],
+    deliverables: "Fully configured POS application (desktop, tablet, mobile), hardware driver setup, localized database, and staff onboarding."
   }
 ];
 

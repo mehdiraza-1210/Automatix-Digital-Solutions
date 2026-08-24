@@ -17,7 +17,8 @@ import {
   Send,
   Clock,
   Globe2,
-  Check
+  Check,
+  Store
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -54,7 +55,8 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
     'business-automation': Cpu,
     'ai-integrations': Sparkles,
     'social-media-management': Target,
-    'hrms-erp-custom': Server
+    'hrms-erp-custom': Server,
+    'pos-systems': Store
   };
 
   const diffIconMap = {
@@ -164,14 +166,11 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, idx) => {
             const Icon = serviceIconMap[service.id] || Cpu;
-            const isWide = idx === 3 || idx === 4;
 
             return (
               <div
                 key={service.id}
-                className={`group relative rounded-2xl glass-panel p-8 sm:p-9 border border-slate-800/80 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-card-hover hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between ${
-                  idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''
-                }`}
+                className="group relative rounded-2xl glass-panel p-8 sm:p-9 border border-slate-800/80 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-card-hover hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
               >
                 {/* Subtle hover glow */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

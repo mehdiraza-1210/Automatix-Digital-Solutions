@@ -168,6 +168,14 @@ export default function Footer({ onNavigate, onOpenConsultation }) {
                   HRMS, ERP & Custom Software
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services', 'pos-systems')}
+                  className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
+                >
+                  Point of Sale (POS) Systems
+                </button>
+              </li>
             </ul>
           </div>
 
