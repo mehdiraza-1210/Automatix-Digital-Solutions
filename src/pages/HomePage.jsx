@@ -336,18 +336,17 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
                 <div className="absolute -top-12 -right-12 w-28 h-28 bg-cyan-500/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div>
-                  {/* Top Bar with Uniform Brand Logo Showcase & External Link */}
-                  <div className="relative w-full h-20 rounded-xl bg-white/[0.05] border border-slate-800 p-3 mb-4 flex items-center justify-center group-hover:border-cyan-400/70 group-hover:bg-white/[0.08] group-hover:shadow-glow-cyan transition-all duration-300">
+                  {/* Top Bar with Uniform Crisp White Brand Logo Showcase & External Link */}
+                  <div className="relative w-full h-20 rounded-xl bg-white p-3.5 mb-4 flex items-center justify-center shadow-md border border-white/20 group-hover:shadow-glow-cyan transition-all duration-300">
                     <img
                       src={client.logo}
                       alt={`${client.name} logo`}
-                      className="max-h-12 max-w-[130px] w-auto h-auto object-contain filter group-hover:brightness-110 transition-transform duration-300 group-hover:scale-105"
+                      className="max-h-12 max-w-[130px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
-                        // fallback if error
                         e.target.style.display = 'none';
                       }}
                     />
-                    <div className="absolute top-2 right-2 w-6 h-6 rounded-md bg-navy-950/80 border border-slate-800 flex items-center justify-center text-slate-500 group-hover:text-cyan-400 transition-colors">
+                    <div className="absolute top-2 right-2 w-6 h-6 rounded-md bg-slate-900/10 hover:bg-slate-900/20 flex items-center justify-center text-slate-700 group-hover:text-blue-600 transition-colors">
                       <ExternalLink className="w-3 h-3" />
                     </div>
                   </div>
