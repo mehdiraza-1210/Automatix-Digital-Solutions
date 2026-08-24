@@ -60,20 +60,18 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
           </p>
         </div>
 
-        {/* Quick Anchor Navigation Tabs (Mobile Horizontally Scrollable, Desktop Centered) */}
-        <div className="mb-12 sm:mb-16">
-          <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none px-1">
-            {servicesData.map((svc) => (
-              <a
-                key={svc.id}
-                href={`#${svc.id}`}
-                className="shrink-0 px-3.5 sm:px-4 py-2 rounded-xl bg-navy-900/80 hover:bg-navy-800 border border-slate-800 hover:border-cyan-500/40 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-2 shadow-sm whitespace-nowrap"
-              >
-                <span className="text-cyan-400 font-mono font-bold text-xs">{svc.number}</span>
-                <span>{svc.title}</span>
-              </a>
-            ))}
-          </div>
+        {/* Quick Anchor Navigation Tabs (Fully Responsive, Never Clipped) */}
+        <div className="flex items-center justify-center flex-wrap gap-2.5 sm:gap-3 mb-12 sm:mb-16 px-2">
+          {servicesData.map((svc) => (
+            <a
+              key={svc.id}
+              href={`#${svc.id}`}
+              className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-navy-900/90 hover:bg-navy-800 border border-slate-800 hover:border-cyan-400 text-xs sm:text-sm font-medium text-slate-200 hover:text-white transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-glow-cyan"
+            >
+              <span className="text-cyan-400 font-mono font-bold text-xs">{svc.number}</span>
+              <span>{svc.title}</span>
+            </a>
+          ))}
         </div>
 
         {/* ========================================================================= */}
