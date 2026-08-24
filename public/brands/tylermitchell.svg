@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="tmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="88" height="88" rx="20" fill="#0b1329" stroke="url(#tmGrad)" stroke-width="2"/>
+  <!-- Studio Lens Frame & TM Monogram -->
+  <circle cx="50" cy="50" r="28" stroke="url(#tmGrad)" stroke-width="3" stroke-dasharray="6 4"/>
+  <circle cx="50" cy="50" r="16" fill="rgba(245, 158, 11, 0.15)" stroke="#ffffff" stroke-width="2"/>
+  <path d="M44 42 H56 M50 42 V58 M54 46 L60 58" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

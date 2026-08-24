@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="rlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fda4af"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="88" height="88" rx="20" fill="#0b1329" stroke="url(#rlGrad)" stroke-width="2"/>
+  <!-- Ruby Love Heart Shield -->
+  <path d="M50 72 C50 72 26 54 26 38 C26 28 34 22 43 24 C47 25 50 28 50 28 C50 28 53 25 57 24 C66 22 74 28 74 38 C74 54 50 72 50 72 Z" fill="url(#rlGrad)"/>
+  <circle cx="50" cy="42" r="4" fill="#ffffff"/>
+</svg>

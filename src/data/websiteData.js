@@ -1,93 +1,113 @@
 export const partnersData = [
   {
+    id: "zerogaero",
     name: "ZeroG Aero",
     category: "Aerospace & Tech",
     tagline: "Next-gen aerodynamic engineering and flight systems.",
     url: "https://zerogaero.com",
     metrics: "Automated test telemetry pipelines",
     badge: "Aerospace",
-    icon: "Rocket"
+    icon: "Rocket",
+    logo: "/brands/zero-logo.svg"
   },
   {
+    id: "ellineswitzerland",
     name: "Elline Switzerland",
     category: "Luxury Cosmetics",
     tagline: "Swiss high-end anti-aging skincare formulations.",
     url: "https://ellineswitzerland.com",
     metrics: "+140% International sales conversion",
     badge: "Luxury & Retail",
-    icon: "Sparkles"
+    icon: "Sparkles",
+    logo: "/brands/eline-logo.webp"
   },
   {
+    id: "momentamarketing",
     name: "Momenta Marketing",
     category: "Growth Agency",
     tagline: "Full-funnel digital acceleration and client acquisition.",
     url: "https://momentamarketing.com",
     metrics: "Unified multi-client CRM sync",
     badge: "Marketing",
-    icon: "TrendingUp"
+    icon: "TrendingUp",
+    logo: "/brands/momenta.png"
   },
   {
+    id: "tylermitchell",
     name: "Tyler Mitchell",
     category: "Creative & Media",
     tagline: "Renowned contemporary photography and visual arts studio.",
     url: "https://tylermitchell.co",
     metrics: "High-capacity digital asset archive",
     badge: "Creative Studio",
-    icon: "Camera"
+    icon: "Camera",
+    logo: "/brands/tyler-logo.png"
   },
   {
+    id: "wiesenberg",
     name: "Wiesen Berg",
     category: "Industrial & Manufacturing",
     tagline: "Precision German engineering and industrial components.",
     url: "https://wiesenberg.de",
     metrics: "Custom ERP supply-chain tracker",
     badge: "Industrial",
-    icon: "Factory"
+    icon: "Factory",
+    logo: "/brands/wiesenberg-logo.png"
   },
   {
+    id: "amopictures",
     name: "AMO Pictures",
     category: "Film & Production",
     tagline: "Feature film production and international post-production.",
     url: "https://amopictures.com",
     metrics: "Automated project asset pipeline",
     badge: "Media & Film",
-    icon: "Film"
+    icon: "Film",
+    logo: "/brands/amo-logo.png"
   },
   {
+    id: "lalalandcafe",
     name: "Lalaland Cafe",
     category: "Hospitality & F&B",
     tagline: "Artisan specialty coffee and socially conscious cafe chain.",
     url: "https://lalalandcafe.com",
     metrics: "Custom POS & staff shift automation",
     badge: "Hospitality",
-    icon: "Coffee"
+    icon: "Coffee",
+    logo: "/brands/LaLaLand_Logo.avif"
   },
   {
+    id: "sevengramscaffe",
     name: "Seven Grams Caffe",
     category: "Specialty Bakery & Cafe",
     tagline: "Craft bakery and small-batch espresso roasters in NYC.",
     url: "https://sevengramscaffe.com",
     metrics: "3.8x ROAS on Meta & Google Ads",
     badge: "E-Commerce",
-    icon: "Store"
+    icon: "Store",
+    logo: "/brands/Seven_Grams_Caffe_Black-logo.avif"
   },
   {
+    id: "rubylove",
     name: "Ruby Love",
     category: "Apparel & HealthTech",
     tagline: "Patented period-proof apparel and hygiene innovation.",
     url: "https://rubylove.com",
     metrics: "Automated omnichannel inventory sync",
     badge: "D2C Brand",
-    icon: "Heart"
+    icon: "Heart",
+    logo: "/brands/Ruby_logo.webp"
   },
   {
+    id: "blissope",
     name: "Blissope",
     category: "Organic Lifestyle",
     tagline: "Sustainable handmade botanical skincare and wellness.",
     url: "https://blissope.com",
     metrics: "Complete e-commerce automation & ad funnel",
     badge: "Eco Lifestyle",
-    icon: "Leaf"
+    icon: "Leaf",
+    logo: "/brands/blisso-logo.avif"
   }
 ];
 

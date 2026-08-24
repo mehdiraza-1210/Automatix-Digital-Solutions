@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="zgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="#0b1329" stroke="url(#zgGrad)" stroke-width="2"/>
+  <path d="M22 68 L50 20 L78 68 L50 54 Z" fill="url(#zgGrad)"/>
+  <circle cx="50" cy="54" r="3" fill="#ffffff"/>
+  <path d="M35 60 L65 60" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+</svg>

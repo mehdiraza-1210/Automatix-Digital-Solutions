@@ -66,7 +66,7 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
               }`}
             >
-              Services (Detailed)
+              Services
             </button>
 
             <button
@@ -146,7 +146,7 @@ export default function Navbar({ activePage, setActivePage, onOpenConsultation }
                   : 'bg-navy-900/60 text-slate-200'
               }`}
             >
-              <span>Detailed Services</span>
+              <span>Services</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

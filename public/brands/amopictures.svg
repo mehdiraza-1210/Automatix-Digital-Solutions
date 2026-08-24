@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="amoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="88" height="88" rx="20" fill="#0b1329" stroke="url(#amoGrad)" stroke-width="2"/>
+  <!-- Cinematic Film Slate / Clapper & Lens Frame -->
+  <rect x="24" y="28" width="52" height="44" rx="8" stroke="url(#amoGrad)" stroke-width="3" fill="rgba(139, 92, 246, 0.15)"/>
+  <polygon points="44,42 62,50 44,58" fill="#ffffff"/>
+  <circle cx="32" cy="36" r="2.5" fill="#f43f5e"/>
+  <circle cx="68" cy="36" r="2.5" fill="#8b5cf6"/>
+</svg>

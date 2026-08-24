@@ -84,7 +84,7 @@ export default function Footer({ onNavigate, onOpenConsultation }) {
                   onClick={() => onNavigate('home')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors"
                 >
-                  Home (Overview)
+                  Home
                 </button>
               </li>
               <li>
@@ -92,7 +92,7 @@ export default function Footer({ onNavigate, onOpenConsultation }) {
                   onClick={() => onNavigate('services')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors"
                 >
-                  Services (Detailed)
+                  Services
                 </button>
               </li>
               <li>
