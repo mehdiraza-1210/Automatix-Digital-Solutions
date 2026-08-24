@@ -29,9 +29,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
           spread: 70,
           origin: { y: 0.6 }
         });
-      } catch (err) {
-        // Fallback
-      }
+      } catch (err) {}
     }, 600);
   };
 
@@ -41,15 +39,16 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-8 flex justify-center items-start min-h-screen">
+      {/* Click backdrop to close */}
       <div 
-        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+        className="fixed inset-0"
         onClick={onClose}
+        aria-hidden="true"
       />
 
-      {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-navy-900 border border-cyan-500/30 rounded-2xl shadow-2xl p-6 sm:p-8 z-10 my-8 overflow-hidden">
+      {/* Modal Container with guaranteed top margin & smooth fitting */}
+      <div className="relative w-full max-w-2xl bg-navy-900 border border-cyan-500/30 rounded-2xl shadow-2xl p-6 sm:p-7 z-10 my-6 sm:my-10 overflow-hidden">
         {/* Glow Accent */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-electric-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -57,7 +56,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors z-20"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -65,19 +64,19 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
 
         {!submitted ? (
           <div>
-            <div className="flex items-center gap-2 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
-              <Sparkles className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
               <span>Free Consultation & Technical Assessment</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white mb-2 pr-6">
               Let's Build Something That Works For You
             </h3>
-            <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+            <p className="text-slate-300 text-xs sm:text-sm mb-5 leading-relaxed">
               Tell us what you're trying to solve — a website that needs to convert better, a process that needs automating, or a system that doesn't exist yet. Wherever you're based, we'll take it from there.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
                     Your Name <span className="text-cyan-400">*</span>
@@ -88,7 +87,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Alex Morgan"
-                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
                   />
                 </div>
 
@@ -102,12 +101,12 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="alex@company.com"
-                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
                     Company
@@ -117,7 +116,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Acme Corp"
-                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
                   />
                 </div>
 
@@ -130,8 +129,8 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                     required
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    placeholder="e.g. United States, UK, Switzerland, Germany..."
-                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    placeholder="e.g. US, UK, Switzerland, Germany..."
+                    className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
                   />
                 </div>
               </div>
@@ -143,7 +142,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
                 >
                   <option value="website-design">1. Website Design & Development</option>
                   <option value="business-automation">2. Business Automation</option>
@@ -163,7 +162,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell us what you're trying to solve..."
-                  className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
                 />
               </div>
 
@@ -185,7 +184,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultService = ""
                 </button>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+              <div className="flex flex-wrap items-center justify-between text-[11px] sm:text-xs text-slate-400 pt-2 border-t border-slate-800/80">
                 <span className="flex items-center gap-1.5">
                   <Check className="w-3.5 h-3.5 text-cyan-400" /> We typically respond within 24 hours.
                 </span>
