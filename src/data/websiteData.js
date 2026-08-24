@@ -235,7 +235,23 @@ export const servicesData = [
       "Built 100% around your specific operational nuances",
       "Scales seamlessly with infinite records and multi-branch support"
     ],
-    deliverables: "Production-ready enterprise web application, localized database, source code handover, and staff training."
+    deliverables: "Production-ready enterprise web application, localized database, source code handover, and staff training.",
+    videos: [
+      {
+        id: "hrms-video",
+        type: "HRMS Demo",
+        title: "HRMS Platform Walkthrough",
+        youtubeId: "HNtFp1oTGp0",
+        tagline: "Employee management, biometric attendance, and automated payroll."
+      },
+      {
+        id: "erp-video",
+        type: "ERP Demo",
+        title: "Enterprise ERP Walkthrough",
+        youtubeId: "3OlzL-aIdmk",
+        tagline: "Procurement, supply-chain tracking, inventory, and finance modules."
+      }
+    ]
   },
   {
     id: "pos-systems",
@@ -260,7 +276,16 @@ export const servicesData = [
       "Sub-second order processing during peak rush hours",
       "Seamless real-time synchronization with your ERP and accounting"
     ],
-    deliverables: "Fully configured POS application (desktop, tablet, mobile), hardware driver setup, localized database, and staff onboarding."
+    deliverables: "Fully configured POS application (desktop, tablet, mobile), hardware driver setup, localized database, and staff onboarding.",
+    videos: [
+      {
+        id: "pos-video",
+        type: "POS Demo",
+        title: "Point of Sale (POS) Walkthrough",
+        youtubeId: "73L6Gxt6JfQ",
+        tagline: "Touchscreen order processing, barcode scanning, and multi-location sync."
+      }
+    ]
   }
 ];
 

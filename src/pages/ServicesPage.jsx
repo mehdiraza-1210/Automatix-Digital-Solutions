@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { servicesData } from '../data/websiteData';
 import { 
   Globe,
@@ -10,8 +10,81 @@ import {
   ArrowRight, 
   CheckCircle2,
   HelpCircle,
-  Store
+  Store,
+  Play,
+  Tv,
+  ExternalLink
 } from 'lucide-react';
+
+function ServiceVideoPlayer({ videos }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  if (!videos || videos.length === 0) return null;
+
+  const currentVideo = videos[activeIdx] || videos[0];
+
+  return (
+    <div className="mt-6 pt-6 border-t border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+          </span>
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-cyan-400 font-display">
+            Live Software Walkthrough (Autoplay / No Audio)
+          </h4>
+        </div>
+
+        {/* Tab switcher if multiple videos exist (e.g. HRMS & ERP) */}
+        {videos.length > 1 && (
+          <div className="flex items-center gap-1.5 p-1 bg-navy-950/90 rounded-xl border border-slate-800">
+            {videos.map((vid, vIdx) => (
+              <button
+                key={vid.id || vIdx}
+                onClick={() => setActiveIdx(vIdx)}
+                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
+                  activeIdx === vIdx
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-glow-cyan'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                }`}
+              >
+                {vid.type}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Embedded 16:9 Video Container */}
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-navy-950 border border-cyan-500/30 shadow-2xl group">
+        <iframe
+          key={currentVideo.youtubeId}
+          src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${currentVideo.youtubeId}&controls=1&modestbranding=1&rel=0`}
+          title={currentVideo.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full object-cover border-0"
+        />
+      </div>
+
+      <div className="mt-2.5 flex items-center justify-between text-xs text-slate-400 px-1">
+        <span className="font-medium text-slate-300">
+          <strong className="text-cyan-400">{currentVideo.title}:</strong> {currentVideo.tagline}
+        </span>
+        <a
+          href={`https://youtu.be/${currentVideo.youtubeId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden sm:inline-flex items-center gap-1 text-slate-500 hover:text-cyan-400 transition-colors shrink-0 ml-2"
+        >
+          <span>Watch on YouTube</span>
+          <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function ServicesPage({ onOpenConsultation, targetServiceId = null }) {
   useEffect(() => {
@@ -38,7 +111,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
 
   return (
     <div className="relative min-h-screen bg-[#040817] text-white pt-24 sm:pt-28 pb-16 sm:pb-24 overflow-x-hidden">
-      {/* Background Ambient Glows (Strictly constrained with max-w-full) */}
+      {/* Background Ambient Glows */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-[700px] h-[300px] bg-gradient-to-b from-blue-600/15 via-cyan-500/10 to-transparent blur-[120px] pointer-events-none" />
       <div className="absolute top-1/3 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-2/3 right-0 w-72 h-72 bg-electric-600/5 rounded-full blur-3xl pointer-events-none" />
@@ -77,7 +150,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
         </div>
 
         {/* ========================================================================= */}
-        {/* 5 DETAILED SERVICE BLOCKS */}
+        {/* 6 DETAILED SERVICE BLOCKS */}
         {/* ========================================================================= */}
         <div className="space-y-8 sm:space-y-12 lg:space-y-16">
           {servicesData.map((service, index) => {
@@ -179,6 +252,11 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                         {service.deliverables}
                       </p>
                     </div>
+
+                    {/* Embedded Live Video Demo Walkthrough if provided for this service */}
+                    {service.videos && (
+                      <ServiceVideoPlayer videos={service.videos} />
+                    )}
                   </div>
                 </div>
               </div>
