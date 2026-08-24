@@ -62,9 +62,9 @@ export default function StatsCounter() {
         <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="text-center mb-8">
-          <p className="text-xs uppercase tracking-widest text-cyan-400 font-semibold mb-1">Proven Engineering & Delivery</p>
+          <p className="text-xs uppercase tracking-widest text-cyan-400 font-semibold mb-1">5+ Years of International Delivery</p>
           <h3 className="text-lg sm:text-xl font-medium text-slate-300">
-            Trusted by growing businesses across industries
+            Serving clients across the US, UK, Switzerland, Germany, and France
           </h3>
         </div>
 

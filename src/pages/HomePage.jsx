@@ -1,95 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ParticleCanvas from '../components/ParticleCanvas';
 import StatsCounter from '../components/StatsCounter';
 import { servicesData, differentiators, partnersData } from '../data/websiteData';
 import { 
   ArrowRight, 
   Sparkles, 
+  Globe, 
   Cpu, 
-  Layers, 
   Target, 
   Server, 
   ShieldCheck, 
-  Globe, 
   Zap, 
   ExternalLink,
   CheckCircle2,
   ChevronRight,
-  TrendingUp,
-  BarChart3,
-  Rocket,
-  Camera,
-  Factory,
-  Film,
-  Coffee,
-  Store,
-  Heart,
-  Leaf
+  Send,
+  Clock,
+  Globe2,
+  Check
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export default function HomePage({ onNavigate, onOpenConsultation }) {
-  // Mapping service overview icons
-  const serviceIcons = {
+  const [inlineForm, setInlineForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    country: '',
+    service: 'website-design',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleInlineSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      try {
+        confetti({
+          particleCount: 75,
+          spread: 60,
+          origin: { y: 0.7 }
+        });
+      } catch (err) {}
+    }, 600);
+  };
+
+  const serviceIconMap = {
+    'website-design': Globe,
     'business-automation': Cpu,
-    'digital-management': Layers,
-    'digital-marketing': Target,
-    'hrms-erp': Server,
-    'google-meta-ads': BarChart3
+    'ai-integrations': Sparkles,
+    'social-media-management': Target,
+    'hrms-erp-custom': Server
   };
 
-  // Top 4 overview cards as requested for homepage Section 3
-  const homepageServices = [
-    {
-      id: "business-automation",
-      title: "Business Automation",
-      description: "Automate repetitive workflows and connect your business tools into one seamless system.",
-      badge: "Efficiency & Ops",
-      icon: Cpu,
-      points: ["Workflow Orchestration", "CRM Sync", "Process Automation"]
-    },
-    {
-      id: "digital-management",
-      title: "Digital Management",
-      description: "End-to-end management of your digital presence, from operations to online reputation.",
-      badge: "Full Governance",
-      icon: Layers,
-      points: ["24/7 Web Operations", "Asset Management", "Tech Consulting"]
-    },
-    {
-      id: "google-meta-ads",
-      title: "Digital Marketing & Ads",
-      description: "Google & Meta Ads campaigns built for real ROI, not just impressions.",
-      badge: "High Conversion",
-      icon: Target,
-      points: ["Performance Ads", "Search & Social SEO", "ROAS Optimization"]
-    },
-    {
-      id: "hrms-erp",
-      title: "Custom HRMS / ERP",
-      description: "Locally-built HR and Enterprise systems tailored to how your business actually works.",
-      badge: "Bespoke Software",
-      icon: Server,
-      points: ["Attendance & Payroll", "Inventory Tracking", "Zero Per-User Fees"]
-    }
-  ];
-
-  const diffIcons = {
-    ShieldCheck,
-    Globe,
-    Zap
-  };
-
-  const partnerIcons = {
-    Rocket,
-    Sparkles,
-    TrendingUp,
-    Camera,
-    Factory,
-    Film,
-    Coffee,
-    Store,
-    Heart,
-    Leaf
+  const diffIconMap = {
+    'Globe': Globe,
+    'Zap': Zap,
+    'ShieldCheck': ShieldCheck,
+    'Sparkles': Sparkles
   };
 
   return (
@@ -98,66 +70,69 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
       {/* SECTION 1: HERO */}
       {/* ========================================================================= */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        {/* Animated Particle Canvas in Background */}
+        {/* Animated Particle Canvas */}
         <ParticleCanvas />
 
         {/* Ambient Gradient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[400px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-transparent blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[420px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-transparent blur-[130px] rounded-full pointer-events-none" />
         <div className="absolute top-12 left-10 w-72 h-72 bg-electric-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-20 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Grid texture overlay */}
+        {/* Grid pattern overlay */}
         <div className="absolute inset-0 mesh-grid-pattern opacity-25 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Top Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900/80 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-6 shadow-glow-cyan backdrop-blur-md">
+          {/* Top Trust Line Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900/80 border border-cyan-500/30 text-cyan-300 text-xs font-semibold tracking-wide mb-6 shadow-glow-cyan backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            <span>Next-Gen Enterprise Digitization & Growth</span>
+            <span>Proudly serving clients across the US, UK, Switzerland, Germany, and France for over 5 years</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-            Complete Business Automation,{' '}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-white tracking-tight leading-[1.12] mb-6">
+            Technology That Runs Your Business —{' '}
             <span className="gradient-text-cyan drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-              Simplified.
+              So You Don't Have To
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-            We help businesses digitize, market, and scale — from custom HRMS/ERP systems to Google & Meta Ads that convert.
+          <p className="text-lg sm:text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto font-normal leading-relaxed mb-10">
+            From websites and automation to AI integrations, social media management, and enterprise software — we build the digital backbone your business needs to scale, without the overhead of an in-house team.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-14">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12">
             <button
-              onClick={() => onNavigate('services')}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2.5 group"
+              onClick={() => onOpenConsultation()}
+              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2.5 group"
             >
-              <span>Explore Our Services</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Sparkles className="w-4 h-4 text-cyan-200 group-hover:rotate-12 transition-transform" />
+              <span>Book a Free Consultation</span>
             </button>
 
             <button
-              onClick={() => onOpenConsultation()}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm sm:text-base bg-navy-900/90 hover:bg-navy-850 text-slate-100 border border-slate-700 hover:border-cyan-400/80 transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2.5 group"
+              onClick={() => {
+                const el = document.getElementById('partners');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-navy-900/90 hover:bg-navy-850 text-slate-100 border border-slate-700 hover:border-cyan-400/80 transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2.5 group"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
-              <span>Book a Free Consultation</span>
+              <span>See Our Work</span>
+              <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          {/* Tech stack & security badge strip */}
+          {/* Trust points */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 font-medium">
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Custom Architecture
+              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> 5+ Years International Proven Track Record
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Enterprise Data Security
+              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> 100% Fit-For-Purpose Custom Systems
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Measurable ROI Driven
+              <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Rapid 24-Hour Response Support
             </span>
           </div>
         </div>
@@ -171,74 +146,73 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 3: WHAT WE DO (4 CARDS) */}
+      {/* SECTION 3: SERVICES OVERVIEW (5 CARDS) */}
       {/* ========================================================================= */}
       <section id="services-overview" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">
-            <span>What We Do</span>
+            <span>Services Overview</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-4">
-            Four Core Pillars of Digital Transformation
+            Everything Your Business Needs, Under One Roof
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
-            Streamline internal operations, attract high-value clients, and scale with tailored technology built for your exact workflow.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            We partner with businesses to design, build, and automate the systems that power growth — websites that convert, workflows that run themselves, AI that works around the clock, and a social presence that never goes quiet.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {homepageServices.map((card, idx) => {
-            const Icon = card.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {servicesData.map((service, idx) => {
+            const Icon = serviceIconMap[service.id] || Cpu;
+            const isWide = idx === 3 || idx === 4;
+
             return (
               <div
-                key={card.id}
-                className="group relative rounded-2xl glass-panel p-8 sm:p-10 border border-slate-800/80 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-card-hover hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
+                key={service.id}
+                className={`group relative rounded-2xl glass-panel p-8 sm:p-9 border border-slate-800/80 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-card-hover hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between ${
+                  idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''
+                }`}
               >
-                {/* Accent glow on hover */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Subtle hover glow */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-navy-900 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:border-cyan-400 group-hover:shadow-glow-cyan transition-all duration-300">
-                      <Icon className="w-7 h-7" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-navy-900 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:border-cyan-400 group-hover:shadow-glow-cyan transition-all duration-300">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
-                      {card.badge}
+                    <span className="font-mono text-xs font-bold text-cyan-400 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+                      {service.number}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
-                    {card.title}
+                  <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                    {service.title}
                   </h3>
 
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-                    {card.description}
+                  <p className="text-xs font-semibold text-cyan-400/90 mb-3 tracking-wide">
+                    {service.tagline}
                   </p>
 
-                  <div className="space-y-2 mb-8">
-                    {card.points.map((pt, pIdx) => (
-                      <div key={pIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                        <span>{pt}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                    {service.shortDescription}
+                  </p>
                 </div>
 
                 <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
                   <button
-                    onClick={() => onNavigate('services', card.id)}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors"
+                    onClick={() => onNavigate('services', service.id)}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors"
                   >
                     <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
 
                   <button
-                    onClick={() => onOpenConsultation(card.id)}
+                    onClick={() => onOpenConsultation(service.id)}
                     className="text-xs text-slate-400 hover:text-white transition-colors"
                   >
-                    Quick Quote →
+                    Consult →
                   </button>
                 </div>
               </div>
@@ -249,54 +223,56 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
         <div className="mt-12 text-center">
           <button
             onClick={() => onNavigate('services')}
-            className="inline-flex items-center gap-2 text-sm font-bold text-white px-6 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 transition-all hover:shadow-glow-blue"
+            className="inline-flex items-center gap-2 text-sm font-bold text-white px-6 py-3.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 transition-all hover:shadow-glow-blue"
           >
-            <span>View All Detailed Service Specifications</span>
+            <span>Explore All 5 Service Specifications & Deliverables</span>
             <ChevronRight className="w-4 h-4 text-cyan-400" />
           </button>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 4: WHY AUTOMATIX (3 COLUMNS) */}
+      {/* SECTION 4: WHY CHOOSE US */}
       {/* ========================================================================= */}
       <section id="why-automatix" className="relative py-24 bg-navy-900/40 border-y border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-4xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">
               <span>Why Choose Us</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-4">
-              Built for Scale, Engineered with Precision
+              One Team. Every System Your Business Runs On.
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg">
-              We bridge high-end engineering with tangible commercial results. No bloated retainer fluff.
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+              For over 5 years, we've helped businesses across the US, UK, Switzerland, Germany, and France build the digital infrastructure they need to compete and grow — without the cost and complexity of managing multiple vendors.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {differentiators.map((item, idx) => {
-              const Icon = diffIcons[item.icon] || ShieldCheck;
+              const Icon = diffIconMap[item.icon] || ShieldCheck;
               return (
                 <div
                   key={idx}
-                  className="relative rounded-2xl glass-panel p-8 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-cyan hover:-translate-y-1 group"
+                  className="relative rounded-2xl glass-panel p-7 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-glow-cyan hover:-translate-y-1 group flex flex-col justify-between"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-navy-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6" />
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-navy-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform">
+                      <Icon className="w-6 h-6" />
+                    </div>
+
+                    <div className="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold bg-blue-500/15 text-cyan-300 border border-blue-500/30 mb-3">
+                      {item.highlight}
+                    </div>
+
+                    <h3 className="text-lg font-display font-bold text-white mb-2.5">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-
-                  <div className="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold bg-blue-500/15 text-cyan-300 border border-blue-500/30 mb-3">
-                    {item.highlight}
-                  </div>
-
-                  <h3 className="text-xl font-display font-bold text-white mb-3">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
                 </div>
               );
             })}
@@ -305,25 +281,24 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 5: PARTNERS / CLIENTS */}
+      {/* SECTION 5: OUR PARTNERS / CLIENTS */}
       {/* ========================================================================= */}
       <section id="partners" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">
-            <span>Portfolio & Client Roster</span>
+            <span>Our Partners / Clients</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-4">
-            Brands We've Worked With
+            Trusted by Brands Across the Globe
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg">
-            Trusted by businesses across industries and geographies.
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Over the past 5 years, we've partnered with businesses across aviation, fashion, hospitality, marketing, and lifestyle industries throughout the US, UK, Switzerland, Germany, and France — delivering digital solutions that help them grow.
           </p>
         </div>
 
         {/* Client Grid (5x2 layout on desktop, responsive on smaller screens) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-10">
           {partnersData.map((client, idx) => {
-            const Icon = partnerIcons[client.icon] || Sparkles;
             return (
               <a
                 key={idx}
@@ -371,48 +346,175 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
             );
           })}
         </div>
+
+        {/* Supporting Line */}
+        <div className="p-4 rounded-2xl bg-navy-900/60 border border-slate-800 text-center max-w-3xl mx-auto">
+          <p className="text-xs sm:text-sm text-slate-300 font-medium">
+            From aviation data science firms to boutique cafés and lifestyle brands — our clients trust us to deliver work that performs, wherever they are in the world.
+          </p>
+        </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 6: CTA / CONTACT BANNER */}
+      {/* SECTION 6: CONTACT US (DEDICATED FORM) */}
       {/* ========================================================================= */}
-      <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden glass-panel p-8 sm:p-12 lg:p-16 border border-cyan-500/30 text-center shadow-2xl">
+      <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div className="relative rounded-3xl overflow-hidden glass-panel p-8 sm:p-12 lg:p-14 border border-cyan-500/30 shadow-2xl">
           {/* Background Glows */}
-          <div className="absolute -top-32 -left-32 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-32 -left-32 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-6">
+          <div className="relative z-10 max-w-3xl mx-auto text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-4">
               <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Let's Build Your System</span>
+              <span>Contact Us</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-4">
-              Ready to Automate Your Business?
+              Let's Build Something That Works For You
             </h2>
 
-            <p className="text-slate-300 text-base sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let's build something that actually works for you. Eliminate repetitive manual tasks and accelerate predictable client acquisition today.
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+              Tell us what you're trying to solve — a website that needs to convert better, a process that needs automating, or a system that doesn't exist yet. Wherever you're based, we'll take it from there.
             </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => onOpenConsultation()}
-                className="w-full sm:w-auto px-9 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2 group"
-              >
-                <span>Get in Touch</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+          {!submitted ? (
+            <form onSubmit={handleInlineSubmit} className="relative z-10 max-w-2xl mx-auto space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Your Name <span className="text-cyan-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={inlineForm.name}
+                    onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
+                    placeholder="e.g. Sarah Jenkins"
+                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                  />
+                </div>
 
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Email Address <span className="text-cyan-400">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={inlineForm.email}
+                    onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
+                    placeholder="sarah@company.com"
+                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    value={inlineForm.company}
+                    onChange={(e) => setInlineForm({ ...inlineForm, company: e.target.value })}
+                    placeholder="e.g. Apex Global"
+                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Country <span className="text-cyan-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={inlineForm.country}
+                    onChange={(e) => setInlineForm({ ...inlineForm, country: e.target.value })}
+                    placeholder="e.g. United States, UK, Switzerland..."
+                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">
+                  Service You're Interested In <span className="text-cyan-400">*</span>
+                </label>
+                <select
+                  value={inlineForm.service}
+                  onChange={(e) => setInlineForm({ ...inlineForm, service: e.target.value })}
+                  className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                >
+                  <option value="website-design">1. Website Design & Development</option>
+                  <option value="business-automation">2. Business Automation</option>
+                  <option value="ai-integrations">3. A.I. Business Integrations</option>
+                  <option value="social-media-management">4. Social Media Management (Meta, X & Pinterest)</option>
+                  <option value="hrms-erp-custom">5. HRMS, ERP & Custom Software Development</option>
+                  <option value="full-stack">Full Digital Transformation Suite</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">
+                  Message
+                </label>
+                <textarea
+                  rows="4"
+                  value={inlineForm.message}
+                  onChange={(e) => setInlineForm({ ...inlineForm, message: e.target.value })}
+                  placeholder="Tell us about your project or current operational bottleneck..."
+                  className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                />
+              </div>
+
+              <div className="pt-3">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 px-8 rounded-xl font-bold text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-2 group disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <Clock className="w-5 h-5 animate-spin" /> Submitting...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Send className="w-5 h-5" /> Get in Touch
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              <div className="text-center pt-3">
+                <p className="text-xs text-slate-400 flex items-center justify-center gap-2">
+                  <Check className="w-4 h-4 text-cyan-400" />
+                  <span>We typically respond within 24 hours.</span>
+                </p>
+              </div>
+            </form>
+          ) : (
+            <div className="relative z-10 text-center py-10 max-w-lg mx-auto">
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-400 mx-auto mb-4 shadow-glow-cyan">
+                <Check className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
+                Thank You for Reaching Out!
+              </h3>
+              <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+                We have received your message regarding <strong className="text-cyan-400">{inlineForm.service}</strong>. Our senior technical solutions team will review your inquiry and get back to you within 24 hours.
+              </p>
               <button
-                onClick={() => onNavigate('services')}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-navy-900 border border-slate-700 hover:border-cyan-400 text-slate-200 transition-all duration-300 hover:scale-[1.02]"
+                onClick={() => setSubmitted(false)}
+                className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold transition-colors"
               >
-                Explore Full Capabilities
+                Send Another Inquiry
               </button>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>

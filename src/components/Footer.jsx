@@ -130,7 +130,15 @@ export default function Footer({ onNavigate, onOpenConsultation }) {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <button
-                  onClick={() => onNavigate('services')}
+                  onClick={() => onNavigate('services', 'website-design')}
+                  className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
+                >
+                  Website Design & Dev
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services', 'business-automation')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
                 >
                   Business Automation
@@ -138,34 +146,26 @@ export default function Footer({ onNavigate, onOpenConsultation }) {
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('services')}
+                  onClick={() => onNavigate('services', 'ai-integrations')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
                 >
-                  Digital Management
+                  A.I. Business Integrations
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('services')}
+                  onClick={() => onNavigate('services', 'social-media-management')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
                 >
-                  Digital Marketing & SEO
+                  Social Media Management
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('services')}
+                  onClick={() => onNavigate('services', 'hrms-erp-custom')}
                   className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
                 >
-                  Google & Meta Ads
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="text-slate-400 hover:text-cyan-400 transition-colors text-left"
-                >
-                  Local HRMS & Custom ERP
+                  HRMS, ERP & Custom Software
                 </button>
               </li>
             </ul>

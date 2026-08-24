@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { servicesData } from '../data/websiteData';
 import { 
+  Globe,
   Cpu, 
-  Layers, 
+  Sparkles, 
   Target, 
-  BarChart3, 
   Server, 
   Check, 
   ArrowRight, 
-  Sparkles, 
-  ShieldCheck, 
-  Zap, 
-  ChevronRight,
-  TrendingUp,
-  Sliders,
   CheckCircle2,
-  Clock,
   HelpCircle
 } from 'lucide-react';
 
 export default function ServicesPage({ onOpenConsultation, targetServiceId = null }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   useEffect(() => {
     if (targetServiceId) {
       setTimeout(() => {
@@ -36,10 +27,10 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
   }, [targetServiceId]);
 
   const iconsMap = {
+    'Globe': Globe,
     'Cpu': Cpu,
-    'Layers': Layers,
+    'Sparkles': Sparkles,
     'Target': Target,
-    'BarChart3': BarChart3,
     'Server': Server
   };
 
@@ -57,15 +48,15 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
         <div className="text-center max-w-4xl mx-auto mb-16 pt-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Comprehensive Solutions Portfolio</span>
+            <span>Digital Infrastructure & Systems</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight leading-tight mb-6">
-            Our <span className="gradient-text-cyan">Services</span>
+            Everything Your Business Needs, <span className="gradient-text-cyan">Under One Roof</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Full-spectrum digital solutions to automate, manage, and grow your business.
+            We partner with businesses to design, build, and automate the systems that power growth — websites that convert, workflows that run themselves, AI that works around the clock, and a social presence that never goes quiet.
           </p>
         </div>
 
@@ -88,7 +79,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
         {/* ========================================================================= */}
         <div className="space-y-12 sm:space-y-16">
           {servicesData.map((service, index) => {
-            const Icon = iconsMap[service.icon] || Cpu;
+            const Icon = iconsMap[service.icon] || Globe;
             const isEven = index % 2 === 1;
 
             return (
@@ -101,7 +92,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                 <div className={`absolute top-0 ${isEven ? 'left-0' : 'right-0'} w-72 h-72 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-full blur-3xl pointer-events-none`} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                  {/* Left Column: Number, Title, What It Is, Action */}
+                  {/* Left Column: Number, Title, Tagline, What It Is, Action */}
                   <div className="lg:col-span-6 space-y-6">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-navy-950 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-glow-cyan">
@@ -117,10 +108,10 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                       </div>
                     </div>
 
-                    {/* What it is Block */}
+                    {/* Tagline & Description */}
                     <div className="p-5 rounded-2xl bg-navy-950/70 border border-slate-800/80">
                       <h3 className="text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-2 flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5" /> What It Is
+                        <Sparkles className="w-3.5 h-3.5" /> {service.tagline}
                       </h3>
                       <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                         {service.longDescription}
@@ -130,7 +121,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                     {/* Key Strategic Benefits */}
                     <div>
                       <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
-                        Measurable Business Impact
+                        Strategic Business Value
                       </h4>
                       <ul className="space-y-2.5">
                         {service.benefits.map((b, bIdx) => (
@@ -142,19 +133,19 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                       </ul>
                     </div>
 
-                    {/* CTA Trigger for this specific service */}
+                    {/* CTA Trigger */}
                     <div className="pt-2">
                       <button
                         onClick={() => onOpenConsultation(service.id)}
-                        className="px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all flex items-center gap-2 group/btn"
+                        className="px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all flex items-center gap-2 group/btn"
                       >
-                        <span>Deploy {service.title}</span>
+                        <span>Book Consultation for {service.title}</span>
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Right Column: "Includes" Checklist & Deliverables Blueprint */}
+                  {/* Right Column: "Includes" Scope & Deliverables Blueprint */}
                   <div className="lg:col-span-6 space-y-6">
                     {/* Includes Section */}
                     <div className="p-6 sm:p-7 rounded-2xl bg-navy-950/90 border border-cyan-500/20 shadow-inner">
@@ -181,7 +172,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                       <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
                         <Check className="w-3.5 h-3.5 text-cyan-400" /> Deliverables
                       </h4>
-                      <p className="text-xs sm:text-sm text-slate-300">
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         {service.deliverables}
                       </p>
                     </div>
@@ -206,11 +197,11 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-3">
-                Not sure which service fits your business?
+                Let's Build Something That Works For You
               </h2>
 
-              <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8">
-                Every business operates differently. Schedule a 20-minute consultation with our lead solutions architect to map your bottleneck and receive a custom solution proposal.
+              <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                Tell us what you're trying to solve — a website that needs to convert better, a process that needs automating, or a system that doesn't exist yet. Wherever you're based, we'll take it from there.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -219,7 +210,7 @@ export default function ServicesPage({ onOpenConsultation, targetServiceId = nul
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all flex items-center justify-center gap-2 group"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>Talk to Our Team</span>
+                  <span>Get in Touch (24h Response)</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
