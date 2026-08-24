@@ -356,16 +356,16 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 6: CONTACT US (DEDICATED FORM) */}
+      {/* SECTION 6: CONTACT US / CTA BANNER (POPS UP FORM) */}
       {/* ========================================================================= */}
       <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden glass-panel p-8 sm:p-12 lg:p-14 border border-cyan-500/30 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden glass-panel p-8 sm:p-12 lg:p-16 border border-cyan-500/30 shadow-2xl text-center">
           {/* Background Glows */}
           <div className="absolute -top-32 -left-32 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl mx-auto text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-4">
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-6">
               <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
               <span>Contact Us</span>
             </div>
@@ -374,147 +374,32 @@ export default function HomePage({ onNavigate, onOpenConsultation }) {
               Let's Build Something That Works For You
             </h2>
 
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
               Tell us what you're trying to solve — a website that needs to convert better, a process that needs automating, or a system that doesn't exist yet. Wherever you're based, we'll take it from there.
             </p>
-          </div>
 
-          {!submitted ? (
-            <form onSubmit={handleInlineSubmit} className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Your Name <span className="text-cyan-400">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={inlineForm.name}
-                    onChange={(e) => setInlineForm({ ...inlineForm, name: e.target.value })}
-                    placeholder="e.g. Sarah Jenkins"
-                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Email Address <span className="text-cyan-400">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={inlineForm.email}
-                    onChange={(e) => setInlineForm({ ...inlineForm, email: e.target.value })}
-                    placeholder="sarah@company.com"
-                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    value={inlineForm.company}
-                    onChange={(e) => setInlineForm({ ...inlineForm, company: e.target.value })}
-                    placeholder="e.g. Apex Global"
-                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
-                    Country <span className="text-cyan-400">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={inlineForm.country}
-                    onChange={(e) => setInlineForm({ ...inlineForm, country: e.target.value })}
-                    placeholder="e.g. United States, UK, Switzerland..."
-                    className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
-                  Service You're Interested In <span className="text-cyan-400">*</span>
-                </label>
-                <select
-                  value={inlineForm.service}
-                  onChange={(e) => setInlineForm({ ...inlineForm, service: e.target.value })}
-                  className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
-                >
-                  <option value="website-design">1. Website Design & Development</option>
-                  <option value="business-automation">2. Business Automation</option>
-                  <option value="ai-integrations">3. A.I. Business Integrations</option>
-                  <option value="social-media-management">4. Social Media Management (Meta, X & Pinterest)</option>
-                  <option value="hrms-erp-custom">5. HRMS, ERP & Custom Software Development</option>
-                  <option value="full-stack">Full Digital Transformation Suite</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
-                  Message
-                </label>
-                <textarea
-                  rows="4"
-                  value={inlineForm.message}
-                  onChange={(e) => setInlineForm({ ...inlineForm, message: e.target.value })}
-                  placeholder="Tell us about your project or current operational bottleneck..."
-                  className="w-full px-4 py-3 bg-navy-950/90 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
-                />
-              </div>
-
-              <div className="pt-3">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 px-8 rounded-xl font-bold text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-2 group disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 animate-spin" /> Submitting...
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-2">
-                      <Send className="w-5 h-5" /> Get in Touch
-                    </span>
-                  )}
-                </button>
-              </div>
-
-              <div className="text-center pt-3">
-                <p className="text-xs text-slate-400 flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4 text-cyan-400" />
-                  <span>We typically respond within 24 hours.</span>
-                </p>
-              </div>
-            </form>
-          ) : (
-            <div className="relative z-10 text-center py-10 max-w-lg mx-auto">
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-400 mx-auto mb-4 shadow-glow-cyan">
-                <Check className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                Thank You for Reaching Out!
-              </h3>
-              <p className="text-slate-300 text-sm mb-6 leading-relaxed">
-                We have received your message regarding <strong className="text-cyan-400">{inlineForm.service}</strong>. Our senior technical solutions team will review your inquiry and get back to you within 24 hours.
-              </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
               <button
-                onClick={() => setSubmitted(false)}
-                className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold transition-colors"
+                onClick={() => onOpenConsultation()}
+                className="w-full sm:w-auto px-9 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-cyan-500 via-blue-600 to-electric-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-glow-blue hover:shadow-glow-cyan transition-all duration-300 hover:scale-[1.03] flex items-center justify-center gap-2.5 group"
               >
-                Send Another Inquiry
+                <span>Get in Touch</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => onNavigate('services')}
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-navy-900/90 border border-slate-700 hover:border-cyan-400 text-slate-200 transition-all duration-300 hover:scale-[1.02]"
+              >
+                Explore Services
               </button>
             </div>
-          )}
+
+            <p className="text-xs text-slate-400 flex items-center justify-center gap-2">
+              <Check className="w-4 h-4 text-cyan-400" />
+              <span>We typically respond within 24 hours.</span>
+            </p>
+          </div>
         </div>
       </section>
     </div>
